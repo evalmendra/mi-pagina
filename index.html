@@ -3,97 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marina de Casares Suites</title>
+  <title>Apartamento de lujo frente al mar</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
+  <!-- Header -->
   <header>
-    <h1>Marina de Casares Suites</h1>
-    <p>Apartamento de lujo frente al mar en la Costa del Sol</p>
+    <div class="container">
+      <h1>Apartamento de lujo frente al mar</h1>
+      <p>Tu lugar perfecto para unas vacaciones inolvidables</p>
+    </div>
   </header>
 
+  <!-- Hero Section (Imagen principal) -->
   <section class="hero">
     <img src="img/vista-mar.jpeg" alt="Vistas al mar desde el apartamento">
   </section>
 
+  <!-- Información del Apartamento -->
   <section class="descripcion">
-    <h2>Sobre el alojamiento</h2>
-    <p>
-      Vive la experiencia de hospedarte en un apartamento completamente equipado, con vistas espectaculares al mar, 
-      decoración moderna y todas las comodidades para una estancia inolvidable. Perfecto para escapadas románticas 
-      o vacaciones en familia.
-    </p>
-  </section>
-
-  <section class="galeria">
-    <h2>Galería</h2>
-    <div class="imagenes">
-      <img src="img/salon.jpeg" alt="Salón elegante y luminoso">
-      <img src="img/dormitorio.jpeg" alt="Dormitorio con vistas">
-      <img src="img/piscina.jpeg" alt="Piscina privada del complejo">
+    <div class="container">
+      <h2>Sobre el alojamiento</h2>
+      <p>
+        Disfruta de un apartamento completamente equipado, con vistas espectaculares al mar, decoración moderna y todas las comodidades para una estancia única. Perfecto para escapadas románticas o vacaciones familiares.
+      </p>
     </div>
   </section>
 
-  <section class="reservas">
-    <h2>Calendario de reservas</h2>
-    <p>Consulta disponibilidad y reserva fácilmente tu estancia con nosotros.</p>
+  <!-- Galería de imágenes -->
+  <section class="galeria">
+    <div class="container">
+      <h2>Galería de fotos</h2>
+      <div class="imagenes">
+        <img src="img/salon.jpeg" alt="Salón luminoso y elegante">
+        <img src="img/dormitorio.jpeg" alt="Dormitorio con vistas">
+        <img src="img/piscina.jpeg" alt="Piscina privada del complejo">
+      </div>
+    </div>
+  </section>
 
-    <!-- Calendario y Formulario de Reserva -->
-    <div class="calendario">
+  <!-- Calendario de Reservas -->
+  <section class="reservas">
+    <div class="container">
+      <h2>Consulta disponibilidad y realiza tu reserva</h2>
       <form id="formReserva">
         <div class="form-group">
           <label for="nombre">Nombre:</label>
           <input type="text" id="nombre" name="nombre" required>
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="email">Correo electrónico:</label>
           <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
           <label for="rangoFechas">Selecciona tus fechas:</label>
-          <input type="text" id="rangoFechas" name="fechas" placeholder="Selecciona las fechas" required>
+          <input type="text" id="rangoFechas" name="fechas" required placeholder="Selecciona un rango de fechas">
         </div>
-        <button type="submit">Reservar</button>
+        <button type="submit">Reservar ahora</button>
       </form>
-      
-      <!-- Calendario con Flatpickr -->
-      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-      <script>
-        // Inicializa el calendario con rango de fechas
-        flatpickr("#rangoFechas", {
-          mode: "range",
-          minDate: "today", // No se puede seleccionar fechas pasadas
-          dateFormat: "Y-m-d", // Formato de fecha (Año-Mes-Día)
-        });
-
-        // Manejo del formulario
-        document.getElementById("formReserva").addEventListener("submit", function(e) {
-          e.preventDefault();
-          const nombre = document.getElementById("nombre").value;
-          const email = document.getElementById("email").value;
-          const fechas = document.getElementById("rangoFechas").value;
-
-          // Simulación de reserva
-          alert(`¡Gracias, ${nombre}! Tu reserva para las fechas ${fechas} fue enviada.`);
-
-          // Limpiar formulario
-          this.reset();
-        });
-      </script>
+      <div id="respuestaReserva"></div>
     </div>
   </section>
 
+  <!-- Contacto -->
   <section class="contacto">
-    <h2>Contacto</h2>
-    <p>Email: <a href="mailto:info@marina-de-casares-suites.com">info@marina-de-casares-suites.com</a></p>
-    <p>Teléfono: +34 600 000 000</p>
+    <div class="container">
+      <h2>Contacto</h2>
+      <p>Email: <a href="mailto:info@apartamentomaritimo.com">info@apartamentomaritimo.com</a></p>
+      <p>Teléfono: +34 600 000 000</p>
+    </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2025 Marina de Casares Suites. Todos los derechos reservados.</p>
+    <div class="container">
+      <p>© 2025 Apartamento Marítimo. Todos los derechos reservados.</p>
+    </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    flatpickr("#rangoFechas", {
+      mode: "range",
+      minDate: "today", // No se pueden seleccionar fechas pasadas
+      dateFormat: "Y-m-d"
+    });
+
+    document.getElementById("formReserva").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const fechas = document.getElementById("rangoFechas").value;
+      
+      const [fechaInicio, fechaFin] = fechas.split(' to ');
+
+      // Aquí se podría conectar con el backend para guardar la reserva
+
+      document.getElementById("respuestaReserva").innerHTML = `
+        <p>¡Gracias, ${nombre}! Tu reserva para las fechas ${fechaInicio} - ${fechaFin} ha sido recibida.</p>
+      `;
+
+      // Limpiar el formulario
+      this.reset();
+    });
+  </script>
 </body>
 </html>
