@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marina de Casares Suites</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
@@ -39,17 +40,48 @@
     <h2>Calendario de reservas</h2>
     <p>Consulta disponibilidad y reserva fácilmente tu estancia con nosotros.</p>
 
-    <!-- 📆 Aquí insertamos un calendario externo (ej. Calendly o Tockify) -->
+    <!-- Calendario y Formulario de Reserva -->
     <div class="calendario">
-      <!-- Opción con Calendly embebido -->
-      <iframe src="https://calendly.com/evalmendra/reserva-de-alojamiento" 
-              width="100%" height="600" frameborder="0"></iframe>
+      <form id="formReserva">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="rangoFechas">Selecciona tus fechas:</label>
+          <input type="text" id="rangoFechas" name="fechas" placeholder="Selecciona las fechas" required>
+        </div>
+        <button type="submit">Reservar</button>
+      </form>
       
-      <!-- Si prefieres Google Calendar: reemplaza con tu iframe de calendario público -->
-      <!--
-      <iframe src="https://calendar.google.com/calendar/embed?src=tu%40gmail.com&ctz=Europe%2FMadrid"
-              style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-      -->
+      <!-- Calendario con Flatpickr -->
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+      <script>
+        // Inicializa el calendario con rango de fechas
+        flatpickr("#rangoFechas", {
+          mode: "range",
+          minDate: "today", // No se puede seleccionar fechas pasadas
+          dateFormat: "Y-m-d", // Formato de fecha (Año-Mes-Día)
+        });
+
+        // Manejo del formulario
+        document.getElementById("formReserva").addEventListener("submit", function(e) {
+          e.preventDefault();
+          const nombre = document.getElementById("nombre").value;
+          const email = document.getElementById("email").value;
+          const fechas = document.getElementById("rangoFechas").value;
+
+          // Simulación de reserva
+          alert(`¡Gracias, ${nombre}! Tu reserva para las fechas ${fechas} fue enviada.`);
+
+          // Limpiar formulario
+          this.reset();
+        });
+      </script>
     </div>
   </section>
 
