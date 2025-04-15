@@ -3,111 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apartamento de lujo frente al mar</title>
+  <title>Marina de Casares Suites</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
-  <!-- Header -->
   <header>
-    <div class="container">
-      <h1>Apartamento de lujo frente al mar</h1>
-      <p>Tu lugar perfecto para unas vacaciones inolvidables</p>
-    </div>
+    <h1>Marina de Casares Suites</h1>
+    <p>Apartamento de lujo frente al mar en la Costa del Sol</p>
   </header>
 
-  <!-- Hero Section (Imagen principal) -->
   <section class="hero">
     <img src="img/vista-mar.jpeg" alt="Vistas al mar desde el apartamento">
   </section>
 
-  <!-- Información del Apartamento -->
   <section class="descripcion">
-    <div class="container">
-      <h2>Sobre el alojamiento</h2>
-      <p>
-        Disfruta de un apartamento completamente equipado, con vistas espectaculares al mar, decoración moderna y todas las comodidades para una estancia única. Perfecto para escapadas románticas o vacaciones familiares.
-      </p>
-    </div>
+    <h2>Sobre el alojamiento</h2>
+    <p>
+      Vive la experiencia de hospedarte en un apartamento completamente equipado, con vistas espectaculares al mar, 
+      decoración moderna y todas las comodidades para una estancia inolvidable. Perfecto para escapadas románticas 
+      o vacaciones en familia.
+    </p>
   </section>
 
-  <!-- Galería de imágenes -->
   <section class="galeria">
-    <div class="container">
-      <h2>Galería de fotos</h2>
-      <div class="imagenes">
-        <img src="img/salon.jpeg" alt="Salón luminoso y elegante">
-        <img src="img/dormitorio.jpeg" alt="Dormitorio con vistas">
-        <img src="img/piscina.jpeg" alt="Piscina privada del complejo">
-      </div>
+    <h2>Galería</h2>
+    <div class="imagenes">
+      <img src="img/salon.jpeg" alt="Salón elegante y luminoso">
+      <img src="img/dormitorio.jpeg" alt="Dormitorio con vistas">
+      <img src="img/piscina.jpeg" alt="Piscina privada del complejo">
     </div>
   </section>
 
-  <!-- Calendario de Reservas -->
   <section class="reservas">
-    <div class="container">
-      <h2>Consulta disponibilidad y realiza tu reserva</h2>
-      <form id="formReserva">
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="rangoFechas">Selecciona tus fechas:</label>
-          <input type="text" id="rangoFechas" name="fechas" required placeholder="Selecciona un rango de fechas">
-        </div>
-        <button type="submit">Reservar ahora</button>
-      </form>
-      <div id="respuestaReserva"></div>
+    <h2>Calendario de reservas</h2>
+    <p>Consulta disponibilidad y reserva fácilmente tu estancia con nosotros.</p>
+
+    <!-- 📆 Aquí insertamos un calendario externo (ej. Calendly o Tockify) -->
+    <div class="calendario">
+      <!-- Opción con Calendly embebido -->
+      <iframe src="https://calendly.com/evalmendra/reserva-de-alojamiento" 
+              width="100%" height="600" frameborder="0"></iframe>
+      
+      <!-- Si prefieres Google Calendar: reemplaza con tu iframe de calendario público -->
+      <!--
+      <iframe src="https://calendar.google.com/calendar/embed?src=tu%40gmail.com&ctz=Europe%2FMadrid"
+              style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+      -->
     </div>
   </section>
 
-  <!-- Contacto -->
   <section class="contacto">
-    <div class="container">
-      <h2>Contacto</h2>
-      <p>Email: <a href="mailto:info@apartamentomaritimo.com">info@apartamentomaritimo.com</a></p>
-      <p>Teléfono: +34 600 000 000</p>
-    </div>
+    <h2>Contacto</h2>
+    <p>Email: <a href="mailto:info@marina-de-casares-suites.com">info@marina-de-casares-suites.com</a></p>
+    <p>Teléfono: +34 600 000 000</p>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>© 2025 Apartamento Marítimo. Todos los derechos reservados.</p>
-    </div>
+    <p>© 2025 Marina de Casares Suites. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script>
-    flatpickr("#rangoFechas", {
-      mode: "range",
-      minDate: "today", // No se pueden seleccionar fechas pasadas
-      dateFormat: "Y-m-d"
-    });
-
-    document.getElementById("formReserva").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const nombre = document.getElementById("nombre").value;
-      const email = document.getElementById("email").value;
-      const fechas = document.getElementById("rangoFechas").value;
-      
-      const [fechaInicio, fechaFin] = fechas.split(' to ');
-
-      // Aquí se podría conectar con el backend para guardar la reserva
-
-      document.getElementById("respuestaReserva").innerHTML = `
-        <p>¡Gracias, ${nombre}! Tu reserva para las fechas ${fechaInicio} - ${fechaFin} ha sido recibida.</p>
-      `;
-
-      // Limpiar el formulario
-      this.reset();
-    });
-  </script>
 </body>
 </html>
