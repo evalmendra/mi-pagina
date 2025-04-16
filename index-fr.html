@@ -54,22 +54,20 @@
   <section class="reservas">
     <h2>Calendrier de réservation</h2>
     <p>Vérifiez la disponibilité et réservez facilement votre séjour chez nous.</p>
-
-    <div class="calendario">
-      <form id="formReserva">
+    <form id="formReserva" class="formulario-reserva">
         <div class="form-group">
-          <label for="nombre">Nom :</label>
-          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">👤 Nom :</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Votre nom" required>
         </div>
         <div class="form-group">
-          <label for="email">E-mail :</label>
-          <input type="email" id="email" name="email" required>
+          <label for="email">📧 Email :</label>
+          <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
         </div>
         <div class="form-group">
-          <label for="rangoFechas">Choisissez vos dates :</label>
-          <input type="text" id="rangoFechas" name="fechas" placeholder="Choisissez des dates" required>
+          <label for="rangoFechas">📅 Dates :</label>
+          <input type="text" id="rangoFechas" name="fechas" placeholder="Choisissez vos dates" required>
         </div>
-        <button type="submit">Réserver</button>
+        <button type="submit" class="boton-reserva">Réserver</button>
       </form>
     </div>
   </section>
@@ -101,12 +99,28 @@
     });
 
     document.getElementById("formReserva").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const nombre = document.getElementById("nombre").value;
-      const fechas = document.getElementById("rangoFechas").value;
-      alert(`Merci, ${nombre} ! Votre réservation pour les dates suivantes a été enregistrée : ${fechas}`);
-      this.reset();
-    });
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const fechas = document.getElementById("rangoFechas").value.trim();
+
+    if (!nombre || !email || !fechas) {
+      alert("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    // Simulación de envío correcto
+    const mensaje = `
+Merci, ${nombre} ! 
+Votre demande de réservation pour les dates suivantes a bien été reçue : 
+${fechas}
+
+Nous vous contacterons sous peu à ${email}.
+    `;
+    alert(mensaje);
+    this.reset();
+  });
 
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox-img');

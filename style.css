@@ -413,5 +413,49 @@
       body {
         padding-top: 3.5rem;
       }
+      .formulario-reserva {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #f8f8f8;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-weight: 600;
+        color: #333;
+      }
+      
+      .form-group input {
+        width: 100%;
+        padding: 0.5rem 0.7rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+      
+      .boton-reserva {
+        width: 100%;
+        padding: 0.7rem;
+        background-color: #004080;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .boton-reserva:hover {
+        background-color: #0066cc;
+      }
       
       
