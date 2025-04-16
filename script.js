@@ -66,5 +66,20 @@ function eachDayBetween(start, end) {
     `;
     alert(mensaje);
     this.reset();
+
+    fetch('enviar-reserva.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre, email, fechas })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   });
   
