@@ -7,35 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
-<!-- Lightbox (visor de imagen ampliada) -->
-<div id="lightbox" class="lightbox">
-  <span class="cerrar">&times;</span>
-  <img class="lightbox-img" src="" alt="">
-</div>
-<script>
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.querySelector('.lightbox-img');
-  const cerrar = document.querySelector('.cerrar');
-  const imagenes = document.querySelectorAll('.galeria .imagenes img');
-
-  imagenes.forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt;
-    });
-  });
-
-  cerrar.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox || e.target === lightboxImg) {
-      lightbox.style.display = 'none';
-    }
-  });
-</script>
 <body>
 
   <header>
@@ -93,8 +64,8 @@
         // Inicializa el calendario con rango de fechas
         flatpickr("#rangoFechas", {
           mode: "range",
-          minDate: "today", // No se puede seleccionar fechas pasadas
-          dateFormat: "Y-m-d", // Formato de fecha (Año-Mes-Día)
+          minDate: "today",
+          dateFormat: "Y-m-d",
         });
 
         // Manejo del formulario
@@ -104,10 +75,7 @@
           const email = document.getElementById("email").value;
           const fechas = document.getElementById("rangoFechas").value;
 
-          // Simulación de reserva
           alert(`¡Gracias, ${nombre}! Tu reserva para las fechas ${fechas} fue enviada.`);
-
-          // Limpiar formulario
           this.reset();
         });
       </script>
@@ -123,6 +91,38 @@
   <footer>
     <p>© 2025 Marina de Casares Suites. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Lightbox (visor de imagen ampliada) -->
+  <div id="lightbox" class="lightbox">
+    <span class="cerrar">&times;</span>
+    <img class="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- Script Lightbox -->
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const cerrar = document.querySelector('.cerrar');
+    const imagenes = document.querySelectorAll('.galeria .imagenes img');
+
+    imagenes.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+      });
+    });
+
+    cerrar.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightboxImg) {
+        lightbox.style.display = 'none';
+      }
+    });
+  </script>
 
 </body>
 </html>
