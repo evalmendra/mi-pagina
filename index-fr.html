@@ -102,16 +102,34 @@
       locale: "fr"
     });
 
-    document.querySelector("form.formulario-reserva").addEventListener("submit", function (e) {
+    document.getElementById("formReserva").addEventListener("submit", function(e) {
+      e.preventDefault();
+
       const nombre = document.getElementById("nombre").value.trim();
       const email = document.getElementById("email").value.trim();
       const fechas = document.getElementById("rangoFechas").value.trim();
 
       if (!nombre || !email || !fechas) {
         alert("Veuillez remplir tous les champs.");
-        e.preventDefault();
         return;
       }
+
+      // Redireccionar según el idioma seleccionado
+      const idioma = document.documentElement.lang;  // Detecta el idioma de la página
+
+      let urlRedireccion;
+      if (idioma === "fr") {
+        urlRedireccion = "merci.html";  // Francés
+      } else if (idioma === "en") {
+        urlRedireccion = "thanks.html";  // Inglés
+      } else if (idioma === "es") {
+        urlRedireccion = "gracias.html";  // Español
+      } else if (idioma === "de") {
+        urlRedireccion = "danke.html";  // Alemán
+      }
+
+      // Redirigir al usuario
+      window.location.href = urlRedireccion;
 
       alert(`
 Merci, ${nombre} ! 
