@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
 </head>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-<script src="script.js"></script>
 <body>
   <header>
     <h1>Marina de Casares Suites</h1>
@@ -57,22 +54,24 @@
   <section class="reservas">
     <h2>Calendrier de réservation</h2>
     <p>Vérifiez la disponibilité et réservez facilement votre séjour chez nous.</p>
-        <form id="formReserva" class="formulario-reserva" method="POST" action="enviar-reserva.php">
-        <div class="form-group">
-          <label for="nombre">👤 Nom :</label>
-          <input type="text" id="nombre" name="nombre" placeholder="Votre nom" required>
-        </div>
-        <div class="form-group">
-          <label for="email">📧 Email :</label>
-          <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
-        </div>
-        <div class="form-group">
-          <label for="rangoFechas">📅 Dates :</label>
-          <input type="text" id="rangoFechas" name="fechas" placeholder="Choisissez vos dates" required>
-        </div>
-        <button type="submit" class="boton-reserva">Réserver</button>
-      </form>
-    </div>
+    <form action="https://formspree.io/f/xvgknrvo" method="POST" class="formulario-reserva">
+      <input type="hidden" name="_subject" value="Nouvelle demande de réservation">
+      <input type="hidden" name="_redirect" value="merci.html">
+
+      <div class="form-group">
+        <label for="nombre">👤 Nom :</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Votre nom" required>
+      </div>
+      <div class="form-group">
+        <label for="email">📧 Email :</label>
+        <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="rangoFechas">📅 Dates :</label>
+        <input type="text" id="rangoFechas" name="fechas" placeholder="Choisissez vos dates" required>
+      </div>
+      <button type="submit" class="boton-reserva">Réserver</button>
+    </form>
   </section>
 
   <section class="contacto">
@@ -90,44 +89,45 @@
     <span class="cerrar">&times;</span>
     <img class="lightbox-img" src="" alt="">
     <div class="flecha izquierda">&#10094;</div>
-    <div class="flecha derecha">&#10095;</div>
+    <div class="flecha droite">&#10095;</div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
   <script>
     flatpickr("#rangoFechas", {
       mode: "range",
       minDate: "today",
       dateFormat: "Y-m-d",
+      locale: "fr"
     });
 
+    document.querySelector("form.formulario-reserva").addEventListener("submit", function (e) {
+      const nombre = document.getElementById("nombre").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const fechas = document.getElementById("rangoFechas").value.trim();
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const fechas = document.getElementById("rangoFechas").value.trim();
+      if (!nombre || !email || !fechas) {
+        alert("Veuillez remplir tous les champs.");
+        e.preventDefault();
+        return;
+      }
 
-    if (!nombre || !email || !fechas) {
-      alert("Veuillez remplir tous les champs.");
-      return;
-    }
-
-    // Simulación de envío correcto
-    const mensaje = `
+      alert(`
 Merci, ${nombre} ! 
 Votre demande de réservation pour les dates suivantes a bien été reçue : 
 ${fechas}
 
 Nous vous contacterons sous peu à ${email}.
-    `;
-    alert(mensaje);
-    this.reset();
-  });
+      `);
+    });
 
+    // Lightbox
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox-img');
     const cerrar = document.querySelector('.cerrar');
     const flechaIzq = document.querySelector('.flecha.izquierda');
-    const flechaDer = document.querySelector('.flecha.derecha');
+    const flechaDer = document.querySelector('.flecha.droite');
     const imagenes = document.querySelectorAll('.galeria .imagenes img');
     let indiceActual = 0;
 
@@ -147,12 +147,12 @@ Nous vous contacterons sous peu à ${email}.
       lightbox.style.display = 'none';
     });
 
-    flechaIzq.addEventListener('click', () => {
+    flechaIzq?.addEventListener('click', () => {
       indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
       mostrarImagen(indiceActual);
     });
 
-    flechaDer.addEventListener('click', () => {
+    flechaDer?.addEventListener('click', () => {
       indiceActual = (indiceActual + 1) % imagenes.length;
       mostrarImagen(indiceActual);
     });
