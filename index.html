@@ -8,37 +8,34 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
 </head>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-<script src="script.js"></script>
 <body>
   <header>
     <h1>Marina de Casares Suites</h1>
-    <p>Luxury beachfront apartment on the Costa del Sol</p>
+    <p>Luxury apartment by the sea on the Costa del Sol</p>
   </header>
 
   <nav class="language-switcher floating-bar">
-      <a href="index.html" class="lang-link">🇬🇧</a>
-      <a href="index-es.html" class="lang-link">🇪🇸</a>
-      <a href="index-de.html" class="lang-link">🇩🇪</a>
-      <a href="index-fr.html" class="lang-link active">🇫🇷</a>
+    <a href="index.html" class="lang-link">🇬🇧</a>
+    <a href="index-es.html" class="lang-link">🇪🇸</a>
+    <a href="index-de.html" class="lang-link">🇩🇪</a>
+    <a href="index-fr.html" class="lang-link active">🇫🇷</a>
   </nav>
 
   <section class="hero">
-    <img src="img/vista-mar.jpeg" alt="Sea view from the apartment">
+    <img src="img/vista-mar.jpeg" alt="View of the sea from the apartment">
   </section>
 
   <section class="descripcion">
-    <h2>About the Accommodation</h2>
+    <h2>About the property</h2>
     <p>
-      Experience a fully-equipped apartment with spectacular sea views, modern decor, and every comfort for an unforgettable stay. Perfect for romantic getaways or family holidays.
+      Enjoy a fully equipped apartment with a spectacular sea view, modern décor, and all the comfort you need for an unforgettable stay. Perfect for a romantic getaway or a family vacation.
     </p>
   </section>
 
   <section class="galeria">
     <h2>Gallery</h2>
     <div class="imagenes">
-      <img src="img/salon.jpeg" alt="Living room">
+      <img src="img/salon.jpeg" alt="Living Room">
       <img src="img/dormitorio.jpeg" alt="Bedroom">
       <img src="img/foto0.jpeg" alt="Photo 0">
       <img src="img/foto1.jpeg" alt="Photo 1">
@@ -55,26 +52,26 @@
   </section>
 
   <section class="reservas">
-    <h2>Booking Calendar</h2>
+    <h2>Reservation Calendar</h2>
     <p>Check availability and easily book your stay with us.</p>
+    <form action="https://formspree.io/f/xvgknrvo" method="POST" class="formulario-reserva">
+      <input type="hidden" name="_subject" value="New reservation request">
+      <input type="hidden" name="_redirect" value="thanks.html">
 
-    <div class="calendario">
-      <form id="formReserva">
-        <div class="form-group">
-          <label for="nombre">Name:</label>
-          <input type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="rangoFechas">Select your dates:</label>
-          <input type="text" id="rangoFechas" name="fechas" placeholder="Choose dates" required>
-        </div>
-        <button type="submit">Book Now</button>
-      </form>
-    </div>
+      <div class="form-group">
+        <label for="nombre">👤 Name:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">📧 Email:</label>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="rangoFechas">📅 Dates:</label>
+        <input type="text" id="rangoFechas" name="fechas" placeholder="Choose your dates" required>
+      </div>
+      <button type="submit" class="boton-reserva">Book</button>
+    </form>
   </section>
 
   <section class="contacto">
@@ -96,21 +93,54 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/en.js"></script>
   <script>
     flatpickr("#rangoFechas", {
       mode: "range",
       minDate: "today",
       dateFormat: "Y-m-d",
+      locale: "en"
     });
 
     document.getElementById("formReserva").addEventListener("submit", function(e) {
       e.preventDefault();
-      const nombre = document.getElementById("nombre").value;
-      const fechas = document.getElementById("rangoFechas").value;
-      alert(`Thank you, ${nombre}! Your booking for ${fechas} has been submitted.`);
-      this.reset();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const fechas = document.getElementById("rangoFechas").value.trim();
+
+      if (!nombre || !email || !fechas) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Redirect based on the selected language
+      const language = document.documentElement.lang;  // Detect the page's language
+
+      let redirectUrl;
+      if (language === "fr") {
+        redirectUrl = "merci.html";  // French
+      } else if (language === "en") {
+        redirectUrl = "thanks.html";  // English
+      } else if (language === "es") {
+        redirectUrl = "gracias.html";  // Spanish
+      } else if (language === "de") {
+        redirectUrl = "danke.html";  // German
+      }
+
+      // Redirect the user
+      window.location.href = redirectUrl;
+
+      alert(`
+Thank you, ${nombre} ! 
+Your booking request for the following dates has been received: 
+${fechas}
+
+We will contact you shortly at ${email}.
+      `);
     });
 
+    // Lightbox
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox-img');
     const cerrar = document.querySelector('.cerrar');
@@ -135,32 +165,16 @@
       lightbox.style.display = 'none';
     });
 
-    flechaIzq.addEventListener('click', () => {
+    flechaIzq?.addEventListener('click', () => {
       indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
       mostrarImagen(indiceActual);
     });
 
-    flechaDer.addEventListener('click', () => {
+    flechaDer?.addEventListener('click', () => {
       indiceActual = (indiceActual + 1) % imagenes.length;
       mostrarImagen(indiceActual);
     });
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox || e.target === lightboxImg) {
-        lightbox.style.display = 'none';
-      }
-    });
-
-    // Touch gestures
-    let startX = 0;
-    lightbox.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
-    lightbox.addEventListener('touchend', (e) => {
-      const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) flechaDer.click();
-      else if (endX - startX > 50) flechaIzq.click();
-    });
-  </script>
-</body>
-</html>
+        lightbox

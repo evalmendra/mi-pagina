@@ -6,44 +6,37 @@
   <title>Marina de Casares Suites</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
 </head>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-<script src="script.js"></script>
 <body>
-
   <header>
     <h1>Marina de Casares Suites</h1>
     <p>Apartamento de lujo frente al mar en la Costa del Sol</p>
   </header>
+
   <nav class="language-switcher floating-bar">
     <a href="index.html" class="lang-link">🇬🇧</a>
-    <a href="index-es.html" class="lang-link">🇪🇸</a>
+    <a href="index-es.html" class="lang-link active">🇪🇸</a>
     <a href="index-de.html" class="lang-link">🇩🇪</a>
-    <a href="index-fr.html" class="lang-link active">🇫🇷</a>
+    <a href="index-fr.html" class="lang-link">🇫🇷</a>
   </nav>
 
   <section class="hero">
-    <img src="img/vista-mar.jpeg" alt="Vistas al mar desde el apartamento">
+    <img src="img/vista-mar.jpeg" alt="Vista al mar desde el apartamento">
   </section>
 
   <section class="descripcion">
     <h2>Sobre el alojamiento</h2>
     <p>
-      Vive la experiencia de hospedarte en un apartamento completamente equipado, con vistas espectaculares al mar, 
-      decoración moderna y todas las comodidades para una estancia inolvidable. Perfecto para escapadas románticas 
-      o vacaciones en familia.
+      Disfrute de un apartamento completamente equipado con una vista espectacular al mar, una decoración moderna y todo el confort necesario para una estancia inolvidable. Perfecto para una escapada romántica o unas vacaciones familiares.
     </p>
   </section>
 
   <section class="galeria">
     <h2>Galería</h2>
     <div class="imagenes">
-      <img src="img/salon.jpeg" alt="Salón del apartamento">
-      <img src="img/dormitorio.jpeg" alt="Dormitorio principal">
+      <img src="img/salon.jpeg" alt="Sala de estar">
+      <img src="img/dormitorio.jpeg" alt="Habitación">
       <img src="img/foto0.jpeg" alt="Foto 0">
       <img src="img/foto1.jpeg" alt="Foto 1">
       <img src="img/foto2.jpeg" alt="Foto 2">
@@ -60,29 +53,30 @@
 
   <section class="reservas">
     <h2>Calendario de reservas</h2>
-    <p>Consulta disponibilidad y reserva fácilmente tu estancia con nosotros.</p>
-    <div class="calendario container">
-      <form id="formReserva">
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="rangoFechas">Selecciona tus fechas:</label>
-          <input type="text" id="rangoFechas" name="fechas" placeholder="Selecciona las fechas" required>
-        </div>
-        <button type="submit">Reservar</button>
-      </form>
-    </div>
+    <p>Consulta la disponibilidad y reserva tu estancia con facilidad.</p>
+    <form action="https://formspree.io/f/xvgknrvo" method="POST" class="formulario-reserva">
+      <input type="hidden" name="_subject" value="Nueva solicitud de reserva">
+      <input type="hidden" name="_redirect" value="gracias.html">
+
+      <div class="form-group">
+        <label for="nombre">👤 Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="email">📧 Correo electrónico:</label>
+        <input type="email" id="email" name="email" placeholder="ejemplo@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="rangoFechas">📅 Fechas:</label>
+        <input type="text" id="rangoFechas" name="fechas" placeholder="Elige tus fechas" required>
+      </div>
+      <button type="submit" class="boton-reserva">Reservar</button>
+    </form>
   </section>
 
   <section class="contacto">
     <h2>Contacto</h2>
-    <p>Email: <a href="mailto:info@marina-de-casares-suites.com">info@marina-de-casares-suites.com</a></p>
+    <p>Correo electrónico: <a href="mailto:info@marina-de-casares-suites.com">info@marina-de-casares-suites.com</a></p>
     <p>Teléfono: +34 636 950 751</p>
   </section>
 
@@ -90,6 +84,7 @@
     <p>© 2025 Marina de Casares Suites. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox">
     <span class="cerrar">&times;</span>
     <img class="lightbox-img" src="" alt="">
@@ -98,28 +93,60 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
   <script>
     flatpickr("#rangoFechas", {
       mode: "range",
       minDate: "today",
       dateFormat: "Y-m-d",
+      locale: "es"
     });
 
     document.getElementById("formReserva").addEventListener("submit", function(e) {
       e.preventDefault();
-      const nombre = document.getElementById("nombre").value;
-      const fechas = document.getElementById("rangoFechas").value;
-      alert(`¡Gracias, ${nombre}! Tu reserva para las fechas ${fechas} fue enviada.`);
-      this.reset();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const fechas = document.getElementById("rangoFechas").value.trim();
+
+      if (!nombre || !email || !fechas) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+
+      // Redirección según el idioma seleccionado
+      const idioma = document.documentElement.lang;  // Detecta el idioma de la página
+
+      let urlRedireccion;
+      if (idioma === "fr") {
+        urlRedireccion = "merci.html";  // Francés
+      } else if (idioma === "en") {
+        urlRedireccion = "thanks.html";  // Inglés
+      } else if (idioma === "es") {
+        urlRedireccion = "gracias.html";  // Español
+      } else if (idioma === "de") {
+        urlRedireccion = "danke.html";  // Alemán
+      }
+
+      // Redirigir al usuario
+      window.location.href = urlRedireccion;
+
+      alert(`
+Gracias, ${nombre} ! 
+Hemos recibido tu solicitud de reserva para las siguientes fechas: 
+${fechas}
+
+Nos pondremos en contacto contigo pronto a ${email}.
+      `);
     });
 
+    // Lightbox
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox-img');
     const cerrar = document.querySelector('.cerrar');
     const flechaIzq = document.querySelector('.flecha.izquierda');
     const flechaDer = document.querySelector('.flecha.derecha');
     const imagenes = document.querySelectorAll('.galeria .imagenes img');
-
     let indiceActual = 0;
 
     function mostrarImagen(index) {
@@ -131,21 +158,19 @@
     }
 
     imagenes.forEach((img, index) => {
-      img.addEventListener('click', () => {
-        mostrarImagen(index);
-      });
+      img.addEventListener('click', () => mostrarImagen(index));
     });
 
     cerrar.addEventListener('click', () => {
       lightbox.style.display = 'none';
     });
 
-    flechaIzq.addEventListener('click', () => {
+    flechaIzq?.addEventListener('click', () => {
       indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
       mostrarImagen(indiceActual);
     });
 
-    flechaDer.addEventListener('click', () => {
+    flechaDer?.addEventListener('click', () => {
       indiceActual = (indiceActual + 1) % imagenes.length;
       mostrarImagen(indiceActual);
     });
@@ -156,18 +181,17 @@
       }
     });
 
+    // Gestos táctiles
     let startX = 0;
     lightbox.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
     });
     lightbox.addEventListener('touchend', (e) => {
       const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) {
-        flechaDer.click();
-      } else if (endX - startX > 50) {
-        flechaIzq.click();
-      }
+      if (startX - endX > 50) flechaDer.click();
+      else if (endX - startX > 50) flechaIzq.click();
     });
   </script>
 </body>
 </html>
+
