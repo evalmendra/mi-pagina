@@ -1,38 +1,5 @@
-// --- CONFIGURACIÓN INICIAL --- //
-const fechasOcupadas = [
-    "2025-04-20",
-    "2025-04-21",
-    "2025-04-27",
-    "2025-05-01",
-    "2025-05-02",
-    "2025-05-05"
-  ];
-  
-  // --- CALENDARIO FLATPICKR --- //
-  flatpickr("#rangoFechas", {
-    mode: "range",
-    minDate: "today",
-    dateFormat: "Y-m-d",
-    locale: "fr",
-    disable: fechasOcupadas,
-    onChange: function(selectedDates, dateStr, instance) {
-      if (selectedDates.length === 2) {
-        const [start, end] = selectedDates;
-        const dias = eachDayBetween(start, end);
-        const conflicto = dias.find(date =>
-          fechasOcupadas.includes(flatpickr.formatDate(date, "Y-m-d"))
-        );
-  
-        if (conflicto) {
-          alert("⚠️ Une ou plusieurs dates sélectionnées ne sont pas disponibles.");
-          instance.clear();
-        }
-      }
-    }
-  });
-  
-  // --- FUNCIONES AUXILIARES --- //
-  function eachDayBetween(start, end) {
+// --- FUNCIONES AUXILIARES --- //
+function eachDayBetween(start, end) {
     const dates = [];
     const curr = new Date(start);
     while (curr <= end) {
@@ -41,6 +8,40 @@ const fechasOcupadas = [
     }
     return dates;
   }
+  
+  // --- CARGA DE FECHAS DESDE JSON --- //
+  fetch('fechas-ocupadas.json')
+    .then(response => {
+      if (!response.ok) throw new Error("No se pudo cargar fechas ocupadas");
+      return response.json();
+    })
+    .then(fechasOcupadas => {
+      flatpickr("#rangoFechas", {
+        mode: "range",
+        minDate: "today",
+        dateFormat: "Y-m-d",
+        locale: "fr",
+        disable: fechasOcupadas,
+        onChange: function(selectedDates, dateStr, instance) {
+          if (selectedDates.length === 2) {
+            const [start, end] = selectedDates;
+            const dias = eachDayBetween(start, end);
+            const conflicto = dias.find(date =>
+              fechasOcupadas.includes(flatpickr.formatDate(date, "Y-m-d"))
+            );
+  
+            if (conflicto) {
+              alert("⚠️ Une ou plusieurs dates sélectionnées ne sont pas disponibles.");
+              instance.clear();
+            }
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error("Error cargando fechas ocupadas:", error);
+      alert("Erreur lors du chargement des dates. Réessayez plus tard.");
+    });
   
   // --- FORMULARIO DE RESERVA --- //
   document.getElementById("formReserva").addEventListener("submit", function (e) {
@@ -55,7 +56,6 @@ const fechasOcupadas = [
       return;
     }
   
-    // Confirmación de reserva simulada
     const mensaje = `
   ✅ Merci, ${nombre} !
   
@@ -67,14 +67,4 @@ const fechasOcupadas = [
     alert(mensaje);
     this.reset();
   });
-  ✅ Enlázalo desde tu HTML
-  En tu archivo index-fr.html (u otros), justo antes del </body> pon:
   
-  html
-  Copiar
-  Editar
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-  <script src="script.js"></script>
-  </body>
-  </html>
