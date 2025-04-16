@@ -11,31 +11,31 @@
 <body>
   <header>
     <h1>Marina de Casares Suites</h1>
-    <p>Luxury apartment by the sea on the Costa del Sol</p>
+    <p>Luxury beachfront apartment on the Costa del Sol</p>
   </header>
 
   <nav class="language-switcher floating-bar">
-    <a href="index.html" class="lang-link">🇬🇧</a>
+    <a href="index.html" class="lang-link active">🇬🇧</a>
     <a href="index-es.html" class="lang-link">🇪🇸</a>
     <a href="index-de.html" class="lang-link">🇩🇪</a>
-    <a href="index-fr.html" class="lang-link active">🇫🇷</a>
+    <a href="index-fr.html" class="lang-link">🇫🇷</a>
   </nav>
 
   <section class="hero">
-    <img src="img/vista-mar.jpeg" alt="View of the sea from the apartment">
+    <img src="img/vista-mar.jpeg" alt="Sea view from the apartment">
   </section>
 
   <section class="descripcion">
-    <h2>About the property</h2>
+    <h2>About the Accommodation</h2>
     <p>
-      Enjoy a fully equipped apartment with a spectacular sea view, modern décor, and all the comfort you need for an unforgettable stay. Perfect for a romantic getaway or a family vacation.
+      Enjoy a fully equipped apartment with a spectacular sea view, modern decor, and all the comfort you need for an unforgettable stay. Perfect for a romantic getaway or a family vacation.
     </p>
   </section>
 
   <section class="galeria">
     <h2>Gallery</h2>
     <div class="imagenes">
-      <img src="img/salon.jpeg" alt="Living Room">
+      <img src="img/salon.jpeg" alt="Living room">
       <img src="img/dormitorio.jpeg" alt="Bedroom">
       <img src="img/foto0.jpeg" alt="Photo 0">
       <img src="img/foto1.jpeg" alt="Photo 1">
@@ -115,7 +115,7 @@
       }
 
       // Redirect based on the selected language
-      const language = document.documentElement.lang;  // Detect the page's language
+      const language = document.documentElement.lang;  // Detect the page language
 
       let redirectUrl;
       if (language === "fr") {
@@ -132,8 +132,8 @@
       window.location.href = redirectUrl;
 
       alert(`
-Thank you, ${nombre} ! 
-Your booking request for the following dates has been received: 
+Thank you, ${nombre}!
+Your reservation request for the following dates has been received: 
 ${fechas}
 
 We will contact you shortly at ${email}.
@@ -149,16 +149,16 @@ We will contact you shortly at ${email}.
     const imagenes = document.querySelectorAll('.galeria .imagenes img');
     let indiceActual = 0;
 
-    function mostrarImagen(index) {
-      const imagen = imagenes[index];
-      lightboxImg.src = imagen.src;
-      lightboxImg.alt = imagen.alt;
+    function showImage(index) {
+      const image = imagenes[index];
+      lightboxImg.src = image.src;
+      lightboxImg.alt = image.alt;
       lightbox.style.display = 'flex';
       indiceActual = index;
     }
 
     imagenes.forEach((img, index) => {
-      img.addEventListener('click', () => mostrarImagen(index));
+      img.addEventListener('click', () => showImage(index));
     });
 
     cerrar.addEventListener('click', () => {
@@ -167,14 +167,30 @@ We will contact you shortly at ${email}.
 
     flechaIzq?.addEventListener('click', () => {
       indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
-      mostrarImagen(indiceActual);
+      showImage(indiceActual);
     });
 
     flechaDer?.addEventListener('click', () => {
       indiceActual = (indiceActual + 1) % imagenes.length;
-      mostrarImagen(indiceActual);
+      showImage(indiceActual);
     });
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox || e.target === lightboxImg) {
-        lightbox
+        lightbox.style.display = 'none';
+      }
+    });
+
+    // Touch gestures
+    let startX = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+    lightbox.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) flechaDer.click();
+      else if (endX - startX > 50) flechaIzq.click();
+    });
+  </script>
+</body>
+</html>
