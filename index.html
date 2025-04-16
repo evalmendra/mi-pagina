@@ -1,59 +1,63 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marina de Casares Suites</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <header>
     <h1>Marina de Casares Suites</h1>
-    <p>Apartamento de lujo frente al mar en la Costa del Sol</p>
+    <p>Luxury beachfront apartment on the Costa del Sol</p>
   </header>
 
+  <nav class="language-switcher">
+    <a href="index.html" class="active">English</a>
+    <a href="index-es.html">Español</a>
+    <a href="index-de.html">Deutsch</a>
+  </nav>
+
   <section class="hero">
-    <img src="img/vista-mar.jpeg" alt="Vistas al mar desde el apartamento">
+    <img src="img/vista-mar.jpeg" alt="Sea view from the apartment">
   </section>
 
   <section class="descripcion">
-    <h2>Sobre el alojamiento</h2>
+    <h2>About the Accommodation</h2>
     <p>
-      Vive la experiencia de hospedarte en un apartamento completamente equipado, con vistas espectaculares al mar, 
-      decoración moderna y todas las comodidades para una estancia inolvidable. Perfecto para escapadas románticas 
-      o vacaciones en familia.
+      Experience a fully-equipped apartment with spectacular sea views, modern decor, and every comfort for an unforgettable stay. Perfect for romantic getaways or family holidays.
     </p>
   </section>
 
   <section class="galeria">
-    <h2>Galería</h2>
+    <h2>Gallery</h2>
     <div class="imagenes">
-      <img src="img/salon.jpeg" alt="S">
-      <img src="img/dormitorio.jpeg" alt="D">
-      <img src="img/foto0.jpeg" alt="Foto 0">
-      <img src="img/foto1.jpeg" alt="Foto 1">
-      <img src="img/foto2.jpeg" alt="Foto 2">
-      <img src="img/foto3.jpeg" alt="Foto 3">
-      <img src="img/foto4.jpeg" alt="Foto 4">
-      <img src="img/foto5.jpeg" alt="Foto 5">
-      <img src="img/foto6.jpeg" alt="Foto 6">
-      <img src="img/foto7.jpeg" alt="Foto 7">
-      <img src="img/foto8.jpeg" alt="Foto 8">
-      <img src="img/foto9.jpeg" alt="Foto 9">
-      <img src="img/foto10.jpeg" alt="Foto 10">
+      <img src="img/salon.jpeg" alt="Living room">
+      <img src="img/dormitorio.jpeg" alt="Bedroom">
+      <img src="img/foto0.jpeg" alt="Photo 0">
+      <img src="img/foto1.jpeg" alt="Photo 1">
+      <img src="img/foto2.jpeg" alt="Photo 2">
+      <img src="img/foto3.jpeg" alt="Photo 3">
+      <img src="img/foto4.jpeg" alt="Photo 4">
+      <img src="img/foto5.jpeg" alt="Photo 5">
+      <img src="img/foto6.jpeg" alt="Photo 6">
+      <img src="img/foto7.jpeg" alt="Photo 7">
+      <img src="img/foto8.jpeg" alt="Photo 8">
+      <img src="img/foto9.jpeg" alt="Photo 9">
+      <img src="img/foto10.jpeg" alt="Photo 10">
     </div>
   </section>
 
   <section class="reservas">
-    <h2>Calendario de reservas</h2>
-    <p>Consulta disponibilidad y reserva fácilmente tu estancia con nosotros.</p>
+    <h2>Booking Calendar</h2>
+    <p>Check availability and easily book your stay with us.</p>
 
     <div class="calendario">
       <form id="formReserva">
         <div class="form-group">
-          <label for="nombre">Nombre:</label>
+          <label for="nombre">Name:</label>
           <input type="text" id="nombre" name="nombre" required>
         </div>
         <div class="form-group">
@@ -61,41 +65,22 @@
           <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
-          <label for="rangoFechas">Selecciona tus fechas:</label>
-          <input type="text" id="rangoFechas" name="fechas" placeholder="Selecciona las fechas" required>
+          <label for="rangoFechas">Select your dates:</label>
+          <input type="text" id="rangoFechas" name="fechas" placeholder="Choose dates" required>
         </div>
-        <button type="submit">Reservar</button>
+        <button type="submit">Book Now</button>
       </form>
-      
-      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-      <script>
-        flatpickr("#rangoFechas", {
-          mode: "range",
-          minDate: "today",
-          dateFormat: "Y-m-d",
-        });
-
-        document.getElementById("formReserva").addEventListener("submit", function(e) {
-          e.preventDefault();
-          const nombre = document.getElementById("nombre").value;
-          const email = document.getElementById("email").value;
-          const fechas = document.getElementById("rangoFechas").value;
-
-          alert(`¡Gracias, ${nombre}! Tu reserva para las fechas ${fechas} fue enviada.`);
-          this.reset();
-        });
-      </script>
     </div>
   </section>
 
   <section class="contacto">
-    <h2>Contacto</h2>
+    <h2>Contact</h2>
     <p>Email: <a href="mailto:info@marina-de-casares-suites.com">info@marina-de-casares-suites.com</a></p>
-    <p>Teléfono: +34 636 950 751</p>
+    <p>Phone: +34 636 950 751</p>
   </section>
 
   <footer>
-    <p>© 2025 Marina de Casares Suites. Todos los derechos reservados.</p>
+    <p>© 2025 Marina de Casares Suites. All rights reserved.</p>
   </footer>
 
   <!-- Lightbox -->
@@ -106,15 +91,28 @@
     <div class="flecha derecha">&#10095;</div>
   </div>
 
-  <!-- Script Lightbox -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
+    flatpickr("#rangoFechas", {
+      mode: "range",
+      minDate: "today",
+      dateFormat: "Y-m-d",
+    });
+
+    document.getElementById("formReserva").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const fechas = document.getElementById("rangoFechas").value;
+      alert(`Thank you, ${nombre}! Your booking for ${fechas} has been submitted.`);
+      this.reset();
+    });
+
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox-img');
     const cerrar = document.querySelector('.cerrar');
     const flechaIzq = document.querySelector('.flecha.izquierda');
     const flechaDer = document.querySelector('.flecha.derecha');
     const imagenes = document.querySelectorAll('.galeria .imagenes img');
-
     let indiceActual = 0;
 
     function mostrarImagen(index) {
@@ -126,9 +124,7 @@
     }
 
     imagenes.forEach((img, index) => {
-      img.addEventListener('click', () => {
-        mostrarImagen(index);
-      });
+      img.addEventListener('click', () => mostrarImagen(index));
     });
 
     cerrar.addEventListener('click', () => {
@@ -151,21 +147,16 @@
       }
     });
 
-    // Gestos táctiles para móviles
+    // Touch gestures
     let startX = 0;
     lightbox.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
     });
-
     lightbox.addEventListener('touchend', (e) => {
       const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) {
-        flechaDer.click();
-      } else if (endX - startX > 50) {
-        flechaIzq.click();
-      }
+      if (startX - endX > 50) flechaDer.click();
+      else if (endX - startX > 50) flechaIzq.click();
     });
   </script>
-
 </body>
 </html>
