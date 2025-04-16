@@ -27,7 +27,7 @@ try {
 
     // Configuración del mensaje
     $mail->setFrom('evalmendra@gmail.com', 'Reserva Web');
-    $mail->addAddress('info@marina-de-casares.com');
+    $mail->addAddress('info@marina-de-casares-suites.com');
 
     $mail->Subject = "Nueva reserva de $nombre";
     $mail->Body    = "Nombre: $nombre\nEmail: $email\nFechas: $fechas";
