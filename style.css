@@ -358,4 +358,34 @@
         right: 20px;
         }
     }
-    
+    .language-switcher {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 1.5rem 0;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+      }
+      
+      .lang-link {
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        background-color: #f0f0f0;
+        color: #333;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s, color 0.3s;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .lang-link:hover {
+        background-color: #ddd;
+      }
+      
+      .lang-link.active {
+        background-color: #004080;
+        color: white;
+        font-weight: bold;
+      }
+      
