@@ -1,91 +1,90 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marina de Casares Suites</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <header>
     <h1>Marina de Casares Suites</h1>
-    <p>Luxusapartment am Meer an der Costa del Sol</p>
+    <p>Appartement de luxe en bord de mer sur la Costa del Sol</p>
   </header>
+
   <nav class="language-switcher">
-    <a href="index.html" class="active">English</a>
+    <a href="index.html">English</a>
     <a href="index-es.html">Español</a>
     <a href="index-de.html">Deutsch</a>
     <a href="index-fr.html" class="active">Français</a>
   </nav>
+
   <section class="hero">
-    <img src="img/vista-mar.jpeg" alt="Meerblick vom Apartment">
+    <img src="img/vista-mar.jpeg" alt="Vue sur la mer depuis l'appartement">
   </section>
 
   <section class="descripcion">
-    <h2>Über die Unterkunft</h2>
+    <h2>À propos du logement</h2>
     <p>
-      Erleben Sie den Aufenthalt in einem voll ausgestatteten Apartment mit spektakulärem Meerblick,
-      modernem Design und allem Komfort für einen unvergesslichen Urlaub. Perfekt für romantische Ausflüge
-      oder Familienferien.
+      Profitez d’un appartement entièrement équipé avec une vue spectaculaire sur la mer, une décoration moderne et tout le confort nécessaire pour un séjour inoubliable. Parfait pour une escapade romantique ou des vacances en famille.
     </p>
   </section>
 
   <section class="galeria">
     <h2>Galerie</h2>
     <div class="imagenes">
-      <img src="img/salon.jpeg" alt="Wohnzimmer des Apartments">
-      <img src="img/dormitorio.jpeg" alt="Hauptschlafzimmer">
-      <img src="img/foto0.jpeg" alt="Foto 0">
-      <img src="img/foto1.jpeg" alt="Foto 1">
-      <img src="img/foto2.jpeg" alt="Foto 2">
-      <img src="img/foto3.jpeg" alt="Foto 3">
-      <img src="img/foto4.jpeg" alt="Foto 4">
-      <img src="img/foto5.jpeg" alt="Foto 5">
-      <img src="img/foto6.jpeg" alt="Foto 6">
-      <img src="img/foto7.jpeg" alt="Foto 7">
-      <img src="img/foto8.jpeg" alt="Foto 8">
-      <img src="img/foto9.jpeg" alt="Foto 9">
-      <img src="img/foto10.jpeg" alt="Foto 10">
+      <img src="img/salon.jpeg" alt="Salon">
+      <img src="img/dormitorio.jpeg" alt="Chambre">
+      <img src="img/foto0.jpeg" alt="Photo 0">
+      <img src="img/foto1.jpeg" alt="Photo 1">
+      <img src="img/foto2.jpeg" alt="Photo 2">
+      <img src="img/foto3.jpeg" alt="Photo 3">
+      <img src="img/foto4.jpeg" alt="Photo 4">
+      <img src="img/foto5.jpeg" alt="Photo 5">
+      <img src="img/foto6.jpeg" alt="Photo 6">
+      <img src="img/foto7.jpeg" alt="Photo 7">
+      <img src="img/foto8.jpeg" alt="Photo 8">
+      <img src="img/foto9.jpeg" alt="Photo 9">
+      <img src="img/foto10.jpeg" alt="Photo 10">
     </div>
   </section>
 
   <section class="reservas">
-    <h2>Buchungskalender</h2>
-    <p>Prüfen Sie die Verfügbarkeit und buchen Sie ganz einfach Ihren Aufenthalt bei uns.</p>
-    <div class="calendario container">
+    <h2>Calendrier de réservation</h2>
+    <p>Vérifiez la disponibilité et réservez facilement votre séjour chez nous.</p>
+
+    <div class="calendario">
       <form id="formReserva">
         <div class="form-group">
-          <label for="nombre">Name:</label>
+          <label for="nombre">Nom :</label>
           <input type="text" id="nombre" name="nombre" required>
         </div>
         <div class="form-group">
-          <label for="email">E-Mail:</label>
+          <label for="email">E-mail :</label>
           <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
-          <label for="rangoFechas">Wähle deine Daten:</label>
-          <input type="text" id="rangoFechas" name="fechas" placeholder="Wähle deine Daten" required>
+          <label for="rangoFechas">Choisissez vos dates :</label>
+          <input type="text" id="rangoFechas" name="fechas" placeholder="Choisissez des dates" required>
         </div>
-        <button type="submit">Buchen</button>
+        <button type="submit">Réserver</button>
       </form>
     </div>
   </section>
 
   <section class="contacto">
-    <h2>Kontakt</h2>
-    <p>Email: <a href="mailto:info@marina-de-casares-suites.com">info@marina-de-casares-suites.com</a></p>
-    <p>Telefon: +34 636 950 751</p>
+    <h2>Contact</h2>
+    <p>Email : <a href="mailto:info@marina-de-casares-suites.com">info@marina-de-casares-suites.com</a></p>
+    <p>Téléphone : +34 636 950 751</p>
   </section>
 
   <footer>
-    <p>© 2025 Marina de Casares Suites. Alle Rechte vorbehalten.</p>
+    <p>© 2025 Marina de Casares Suites. Tous droits réservés.</p>
   </footer>
 
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox">
     <span class="cerrar">&times;</span>
     <img class="lightbox-img" src="" alt="">
@@ -105,7 +104,7 @@
       e.preventDefault();
       const nombre = document.getElementById("nombre").value;
       const fechas = document.getElementById("rangoFechas").value;
-      alert(`Danke, ${nombre}! Ihre Buchung für den Zeitraum ${fechas} wurde gesendet.`);
+      alert(`Merci, ${nombre} ! Votre réservation pour les dates suivantes a été enregistrée : ${fechas}`);
       this.reset();
     });
 
@@ -115,7 +114,6 @@
     const flechaIzq = document.querySelector('.flecha.izquierda');
     const flechaDer = document.querySelector('.flecha.derecha');
     const imagenes = document.querySelectorAll('.galeria .imagenes img');
-
     let indiceActual = 0;
 
     function mostrarImagen(index) {
@@ -127,9 +125,7 @@
     }
 
     imagenes.forEach((img, index) => {
-      img.addEventListener('click', () => {
-        mostrarImagen(index);
-      });
+      img.addEventListener('click', () => mostrarImagen(index));
     });
 
     cerrar.addEventListener('click', () => {
@@ -152,17 +148,15 @@
       }
     });
 
+    // Touch gestures
     let startX = 0;
     lightbox.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
     });
     lightbox.addEventListener('touchend', (e) => {
       const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) {
-        flechaDer.click();
-      } else if (endX - startX > 50) {
-        flechaIzq.click();
-      }
+      if (startX - endX > 50) flechaDer.click();
+      else if (endX - startX > 50) flechaIzq.click();
     });
   </script>
 </body>
