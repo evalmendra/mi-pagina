@@ -26,7 +26,7 @@ try {
     $mail->Port       = 587;
 
     // Configuración del mensaje
-    $mail->setFrom('TU_EMAIL@gmail.com', 'Reserva Web');
+    $mail->setFrom('evalmendra@gmail.com', 'Reserva Web');
     $mail->addAddress('info@marina-de-casares.com');
 
     $mail->Subject = "Nueva reserva de $nombre";
